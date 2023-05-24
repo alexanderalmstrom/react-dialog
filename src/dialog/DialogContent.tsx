@@ -1,6 +1,7 @@
 import "./DialogContent.css";
 
 import { useContext } from "react";
+import { clsx } from "clsx";
 import { DialogContext } from "./Dialog";
 import DialogClose from "./DialogClose";
 
@@ -9,11 +10,15 @@ export type DialogContentProps = {
   className?: string;
 };
 
-const DialogContent = ({ children, ...props }: DialogContentProps) => {
+const DialogContent = ({
+  children,
+  className,
+  ...props
+}: DialogContentProps) => {
   const { ref } = useContext(DialogContext);
 
   return (
-    <dialog ref={ref} className="dialog" {...props}>
+    <dialog ref={ref} className={clsx("dialog", className)} {...props}>
       {children}
       <DialogClose>Close</DialogClose>
     </dialog>

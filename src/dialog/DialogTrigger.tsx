@@ -1,4 +1,5 @@
 import { forwardRef, useContext } from "react";
+import { clsx } from "clsx";
 import { DialogContext } from "./Dialog";
 
 export type DialogTriggerProps = {
@@ -7,11 +8,17 @@ export type DialogTriggerProps = {
 };
 
 const DialogTrigger = forwardRef<HTMLButtonElement, DialogTriggerProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     const { handleOpen } = useContext(DialogContext);
 
     return (
-      <button ref={ref} type="button" onClick={() => handleOpen()} {...props}>
+      <button
+        className={clsx("dialog-trigger", className)}
+        ref={ref}
+        type="button"
+        onClick={() => handleOpen()}
+        {...props}
+      >
         {children}
       </button>
     );
