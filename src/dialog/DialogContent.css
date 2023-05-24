@@ -1,0 +1,86 @@
+.dialog {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  widht: 100%;
+  max-width: 30rem;
+  min-height: 100vh;
+  animation-duration: 300ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.dialog:not([open]) {
+  display: none;
+}
+
+.dialog[open] {
+  animation-name: dialogIn;
+}
+
+.dialog[closing] {
+  animation-name: dialogOut;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  animation-duration: 300ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.dialog:not([open])::backdrop {
+  opacity: 0;
+}
+
+.dialog[open]::backdrop {
+  animation-name: backdropIn;
+}
+
+.dialog[closing]::backdrop {
+  animation-name: backdropOut;
+}
+
+@keyframes dialogIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dialogOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdropOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
